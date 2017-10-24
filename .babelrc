@@ -1,0 +1,27 @@
+{
+  "presets": [
+    ["es2015", { "modules": false }],
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    "syntax-dynamic-import",
+    [
+      "component",
+      [
+        {
+          "libraryName": "mint-ui",
+          "style": true
+        },
+        {
+          "libraryName": "element-ui",
+          "styleLibraryName": "theme-default"
+        }
+      ]
+    ]
+  ]
+}
