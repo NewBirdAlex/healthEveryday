@@ -8,6 +8,7 @@ import store from './store'
 //reset css inport
 import './assets/css/reset.css'
 
+
 import './lib/adaptive'
 
 import 'mint-ui/lib/style.css'

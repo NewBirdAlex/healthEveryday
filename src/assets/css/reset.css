@@ -54,17 +54,11 @@ table {
 body{
     color:#323232;
     padding-bottom: 1rem;
-    background: #f8f8f8;
+    background: #f2f2f2;
+    max-width: 750px;
+    margin:0 auto;
+    padding-bottom: 1rem;
 }
-
-
-
-//漏掉的图标
-@font-face {
-    font-family: 'iconfont';  /* project id 445541 */
-    src: url('//at.alicdn.com/t/font_445541_7v45tukd81dfs9k9.eot');
-    src: url('//at.alicdn.com/t/font_445541_7v45tukd81dfs9k9.eot?#iefix') format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_445541_7v45tukd81dfs9k9.woff') format('woff'),
-    url('//at.alicdn.com/t/font_445541_7v45tukd81dfs9k9.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_445541_7v45tukd81dfs9k9.svg#iconfont') format('svg');
+i{
+    vertical-align: middle;
 }

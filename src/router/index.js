@@ -2,7 +2,9 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueRouterTitle from 'vue-router-title'
 
-const home = () => import('../pages/Home.vue');//首页
+const home = () => import('../pages/home.vue');//首页
+const cart = () => import('../pages/cart.vue');//首页
+const zoe = () => import('../pages/zoe.vue');//首页
 
 Vue.use(Router);
 const router = new Router({
@@ -19,6 +21,24 @@ const router = new Router({
             meta:{
                 navShow: true,
                 title:'首页'
+            }
+        },
+        {
+            path: '/cart',
+            name: 'cart',
+            component: cart,
+            meta:{
+                navShow: true,
+                title:'购物车'
+            }
+        },
+        {
+            path: '/zoe',
+            name: 'zoe',
+            component: zoe,
+            meta:{
+                navShow: true,
+                title:'个人中心'
             }
         }
     ]
