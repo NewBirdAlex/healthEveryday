@@ -1,11 +1,17 @@
 <template>
     <div>
+        <!--<video src="http://flv2.bn.netease.com/videolib3/1604/28/fVobI0704/SD/fVobI0704-mobile.mp4" controls  width="100%"></video>-->
+
+
         <div class="slide">
             <mt-swipe :auto="4000">
-                <mt-swipe-item><img src="../assets/img/nav.jpg" alt=""></mt-swipe-item>
-                <mt-swipe-item><img src="../assets/img/2.jpg" alt=""></mt-swipe-item>
-                <mt-swipe-item><img src="../assets/img/nav.jpg" alt=""></mt-swipe-item>
+                <mt-swipe-item v-for="(item,index) in banner" :key="index"><img :src="item.banner" alt=""></mt-swipe-item>
             </mt-swipe>
+        </div>
+
+        <div class="recPer bgWhite" v-if="showRecommend">
+            <img :src='recommend.head' alt="">
+            <div>来自 <span class="yellow">{{recommend.nick}}</span> 的分享，关注我们获取更多优惠</div>
         </div>
         <!--搜索-->
         <div class="pa bgWhite bt of search">
@@ -26,42 +32,57 @@
             </div>
         </div>
         <!--公告-->
-        <div class="bgWhite pa bt ">
-            <i class="icon iconfont icon-gonggao1 black"></i>
+        <div class="bgWhite pa bt lh35">
+            <i class="icon iconfont icon-gonggao1 black "></i>
             <span class="pr br mr black">公告</span>
-            <span class="fs20 gray spc" style="">10月1号-10月8号天美康联国庆中秋双假期正常营业，如需预约>></span>
+            <span class="fs26 gray spc lh30" style="">{{gonggao}}</span>
         </div>
         <img src="../assets/img/gg.jpg" class="gg" alt="">
+
         <!--shop-->
+
         <div class="bgWhite pa mt" v-for=" (item,index) in productList" :key="index">
-            <img :src="item.img" class="gg" alt="">
-            <!--<img src="../assets/img/gg2.jpg" class="gg" alt="">-->
-            <div class="pl ">
-                <p class="fs26 mt mb">{{item.name}}</p>
-                <p>
-                    <span class="crl"><i class="icon iconfont icon-shouji white"></i></span>
-                    <span class="fs28 deepRed"><i class="icon iconfont icon-renminbi"></i>{{item.price}}</span>
-                    <span class="gray fs26 fr tf">￥{{item.oldPrice}}</span>
-                </p>
+            <img :src="item.image" class="gg" alt="">
+            <div class=" ">
+                <p class="fs26 mt mb"><span class="crl"><i class="icon iconfont icon-shouji white fs40"></i></span> &nbsp; {{item.title}}</p>
+                <!--<p>-->
+                    <!--<span class="crl"><i class="icon iconfont icon-shouji white"></i></span>-->
+                    <!--<span class="fs28 deepRed"><i class="icon iconfont icon-renminbi"></i>{{item.price}}</span>-->
+                    <!--<span class="gray fs26 fr tf">￥{{item.oldPrice}}</span>-->
+                <!--</p>-->
             </div>
         </div>
     </div>
 </template>
 <style scoped lang="less">
     @import '../assets/css/common.less';
+    .recPer{
+        .of;
+        .pa;
+        line-height: 0.9rem;
+        img{
+            .fl;
+            .mr;
+            width: 0.9rem;
+            border-radius: 50%;
+        }
+        div{
+            .fl;
+        }
+    }
     .spc{
         display: inline-block;
-        width: 5.5rem;
+        width: 5.2rem;
         height: 0.26rem;
         .of;
     }
     .crl{
-        width: 0.4rem;
-        height: 0.4rem;
+        width: 0.5rem;
+        height: 0.5rem;
         .tac;
         display: inline-block;
         vertical-align: middle;
-        line-height: 0.4rem;
+        line-height: 0.5rem;
         border-radius: 50%;
         background: #ef3089;
 
@@ -121,25 +142,11 @@
     export default {
         data(){
             return{
-                productList:[
-                    {
-                        img:require('../assets/img/gg2.jpg'),
-                        name:'雪域精粹焕发新肌',
-                        price:628.00,
-                        oldPrice:200
-                    },
-                    {
-                        img:require('../assets/img/gg3.jpg'),
-                        name:'雪域精粹焕发新肌',
-                        price:628.00,
-                        oldPrice:200
-                    },{
-                        img:require('../assets/img/gg4.jpg'),
-                        name:'雪域精粹焕发新肌',
-                        price:628.00,
-                        oldPrice:200
-                    }
-                ],
+                showRecommend:false,
+                gonggao:'',
+                recommend:{},
+                banner:[],
+                productList:[],
                 itemList:[
                     {
                         name:'公告通知',
@@ -168,6 +175,60 @@
         },
         mounted(){
             console.log(this.$route.path)
+            let that = this;
+            if(window._route){
+                var defineRoute =window._route.toString();
+                console.log(defineRoute)
+                delete window._route;
+                this.$router.push({ path: defineRoute })
+            }else{
+                //  banner
+                this.axios.get(this.$config.path+'/index/getBanners')
+                    .then(function (response) {
+                        console.log(response.data);
+                        that.banner=response.data.obj;
+                        console.log(that.banner)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                //商品
+                this.axios.get(this.$config.path+'/index/getRecommendProduct',{})
+                    .then(function (response) {
+                        console.log(response.data);
+                        that.productList = response.data.obj.dataList
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+                //获取推荐人昵称
+                if(window.openId){
+                    this.showrecommend =true;
+                    this.axios.get(this.$config.path+'/index/getRecomenderName',{
+                        params:{
+                            openId:window.openId
+                        }
+                    }).then(function (response) {
+                        console.log(response.data);
+                        that.recommend = response.data.obj;
+                    })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+
+
+                //公告
+                this.axios.get(this.$config.path+'/index/getNoticeList',{})
+                    .then(function (response) {
+                        console.log(response.data);
+                        that.gonggao = response.data.obj.dataList[0].title
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            }
+
         }
     }
 

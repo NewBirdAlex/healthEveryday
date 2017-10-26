@@ -1,6 +1,10 @@
 <template>
     <div class="mt">
-        <div class="list bgWhite pt pb bt " v-for="i in 6">
+
+        <div class="bgWhite pa">
+            亲，您还没有选购任何产品哦！
+        </div>
+        <div class="list bgWhite pt pb bt " v-for="i in 0">
             <div class="left">
                 <i class="icon iconfont icon-yuanquan"></i>
             </div>
@@ -26,14 +30,14 @@
         <div class="sp"></div>
 
         <!--tongji-->
-        <div class=" count">
+        <div class=" count bt">
             <i class="icon iconfont icon-yuanquan ml"></i>
             <span>全选</span>
             <span class="white fr js">下单</span>
             <span class="fr mr">
                总4件:
                 <span class=" ml yellow">
-                     <i class="icon iconfont icon-renminbi"></i><span>88.00</span>
+                     <i class="icon iconfont icon-renminbi"></i><span>00.00</span>
                 </span>
             </span>
         </div>

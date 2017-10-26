@@ -7,7 +7,7 @@
 @rightspace:0.3rem;
 @topspace:0.2rem;
 @bottomspace:0.2rem;
-
+@red:#ff0000;
 @border:1px solid #ccc;
 .bt{border-top: @border;}
 .br{border-right: @border;}
@@ -15,6 +15,7 @@
 .bb{border-bottom: @border;}
 .border{border:@border;}
 
+.red{color:@red;}
 .yellow{color:@yellow;}
 .tac{text-align: center;}
 .white{color:white;}
@@ -23,6 +24,8 @@
 .fs26{font-size: 0.26rem}
 .fs28{font-size: 0.28rem}
 .fs30{font-size: 0.3rem}
+.fs35{font-size: 0.35rem}
+.fs40{font-size: 0.40rem}
 .gray{color: #9a9a9a;}
 .black{color: #282828;}
 .deepRed{color:@deepRed;}
@@ -32,12 +35,12 @@
 .pl{padding-left: @leftspace}
 .pr{padding-right: @rightspace}
 .pt{padding-top: @topspace}
-.pt{padding-bottom: @bottomspace}
+.pb{padding-bottom: @bottomspace}
 .pa{padding: @topspace @leftspace}
 .ml{margin-left: @leftspace}
 .mr{margin-right: @rightspace}
 .mt{margin-top: @topspace}
-.mt{margin-bottom: @bottomspace}
+.mb{margin-bottom: @bottomspace}
 .ma{margin: @topspace @leftspace}
 
 .fl{float: left;}
@@ -49,6 +52,24 @@
 .lh25{line-height: 0.25rem}
 .lh30{line-height: 0.3rem}
 .lh35{line-height: 0.35rem}
-.h40{line-height: 0.4rem}
+.lh40{line-height: 0.4rem}
+.lh50{line-height: 0.5rem}
 
+.vac{vertical-align: middle;}
 .circle{border-radius: 50%}
+.borderBox{box-sizing: border-box}
+
+.confirm{
+  width: 5.99rem;
+  height: 0.90rem;
+  background-color: rgba(255, 108, 0, 1);
+  border-radius: 0.1rem;
+  .white;
+  .tac;
+  line-height: 0.9rem;
+  .fs30;
+  margin: 0 auto;
+}
+i{
+  vertical-align: middle;
+}

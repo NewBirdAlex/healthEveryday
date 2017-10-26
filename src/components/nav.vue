@@ -48,9 +48,9 @@
                         router: '/home'
                     },
                     {
-                        name: '商品分类',
+                        name: '产品分类',
                         icon: 'icon-fenlei',
-                        router: '/work'
+                        router: '/sort'
                     },
                     {
                         name: '购物车',

@@ -3,8 +3,10 @@ import Router from 'vue-router'
 import VueRouterTitle from 'vue-router-title'
 
 const home = () => import('../pages/home.vue');//首页
-const cart = () => import('../pages/cart.vue');//首页
-const zoe = () => import('../pages/zoe.vue');//首页
+const cart = () => import('../pages/cart.vue');//购物车
+const zoe = () => import('../pages/zoe.vue');//个人空间
+const sort = () => import('../pages/sort.vue');//商品匪类
+const join = () => import('../pages/join.vue');//加盟招商
 
 Vue.use(Router);
 const router = new Router({
@@ -39,6 +41,24 @@ const router = new Router({
             meta:{
                 navShow: true,
                 title:'个人中心'
+            }
+        },
+        {
+            path: '/sort',
+            name: 'sort',
+            component: sort,
+            meta:{
+                navShow: true,
+                title:'个人中心'
+            }
+        },
+        {
+            path: '/join',
+            name: 'join',
+            component: join,
+            meta:{
+                navShow: false,
+                title:'加盟'
             }
         }
     ]

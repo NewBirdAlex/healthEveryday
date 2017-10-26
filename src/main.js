@@ -7,6 +7,8 @@ import store from './store'
 
 //reset css inport
 import './assets/css/reset.css'
+import './assets/font/iconfont.css'
+
 
 
 import './lib/adaptive'
@@ -33,9 +35,56 @@ Vue.use(MintUI);
 // Vue.$toast = Vue.prototype.$toast = Toast;
 //mint-ui --------------------------------------------
 
+//ajax----------------
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
+
+// axios.interceptors.request.use((config) => {
+//     if(config.method  == 'post'){
+//         if(config.data instanceof Object){//如果传进来的是一个对象
+//             var params = '';
+//             for(var k in config.data){
+//                 params += `&${k}=${config.data[k]}`;
+//             }
+//             config.data = params;
+//         }
+//     }
+//     return config;
+// },(error) =>{
+//
+// });
+import {config} from './lib/config'
+Vue.use(config)
+//ajax----------------
+
+/**
+ * jsonתformdata
+ * @param json
+ * @returns {string}
+ */
+Vue.prototype.$jsonToFormData = function(json) {
+    var str = ''
+    for (var key in json) {
+        var value = json[key]
+        if (value != null && typeof value != "undefined") {
+            if (value.__proto__.constructor == Array) {
+                for (var index in value) {
+                    if (typeof value[index] != "function")
+                        str += '&' + key + '=' + value[index]
+                }
+                continue;
+            }
+            str += '&' + key + '=' + value
+        }
+    }
+    return str.substr(1)
+}
+
 new Vue({
     el: '#app',
     router,
     store,
+    axios,
     render: h => h(App)
 })
