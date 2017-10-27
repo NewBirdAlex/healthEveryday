@@ -24,7 +24,7 @@
         </div>
         <!--栏目-->
         <div class="bgWhite of pt pb ">
-            <div class="item fl tac itemList mb" v-for="(item,index) in itemList" :key="index">
+            <div class="item fl tac itemList mb" v-for="(item,index) in itemList" :key="index" @click="go(item)">
                 <span :style="item.bgc">
                     <i class="icon iconfont " :class="item.icon" ></i>
                 </span>
@@ -161,7 +161,8 @@
                     {
                         name:'申请加盟',
                         icon:"icon-jiameng1",
-                        bgc:"background-color: rgba(63, 147, 226, 1);"
+                        bgc:"background-color: rgba(63, 147, 226, 1);",
+                        router:'/join'
                     },
                     {
                         name:'积分兑换',
@@ -169,6 +170,13 @@
                         bgc:"background-color: rgba(63, 226, 178, 1);"
                     },
                 ]
+            }
+        },
+        methods:{
+            go(item){
+                if(item.router){
+                    this.$router.push(item.router);
+                }
             }
         },
         components:{
@@ -202,8 +210,9 @@
                         console.log(error);
                     });
                 //获取推荐人昵称
+                console.log(window.openId)
                 if(window.openId){
-                    this.showrecommend =true;
+                    that.showRecommend =true;
                     this.axios.get(this.$config.path+'/index/getRecomenderName',{
                         params:{
                             openId:window.openId

@@ -14,15 +14,32 @@
             </div>
         </div>
 
+        <!--排序-->
+        <div class="sort">
+            <div class="sortNav" v-for="(item ,index) in navList" :key="index" @click="selSort(item)">
+                <!--<i class="icon iconfont "-->
+                    <!--:class="{'icon-paixu':item.type==0,'icon-pc-sort-up-copy-down':item.type==1,'icon-sort-small':item.type==2}"-->
+                <!--&gt;</i>-->
+                <svg class="icon myIcon" aria-hidden="true"
+                     :class="{'icon-paixu':item.type==0,'icon-sort-small':item.type==1,'icon-pc-sort-up-copy-down':item.type==2,}">
+                    <use xlink:href="#icon-paixu" v-if="item.type==0"></use>
+                    <use xlink:href="#icon-sort-small"  v-if="item.type==1"></use>
+                    <use xlink:href="#icon-pc-sort-up-copy-down"  v-if="item.type==2"></use>
+                </svg>
+                {{item.name}}
+                <span class="line"></span>
+                <span class="hline" v-if="item.active"></span>
+            </div>
+        </div>
         <!--产品-->
         <div class="of pdwrap">
             <div class="product " v-for="(item,index) in dataList" :key="index">
                 <div class="tac">
                     <img :src="item.image" alt="">
                     <h4>{{item.title}}</h4>
-                    <div class="pb of">
-                        <span class="yellow fs30 fl"><i class="icon iconfont icon-renminbi"></i>{{item.price}}.00</span>
-                        <span class="gray fr fs20">{{item.count}}人已购买</span>
+                    <div class="pb of lh30">
+                        <span class="yellow fs30 fl"><i class="icon iconfont icon-renminbi"></i>{{item.price | price}}</span>
+                        <span class="gray fr fs20">{{item.salesCount}}人已购买</span>
                     </div>
                 </div>
             </div>
@@ -31,7 +48,51 @@
 </template>
 <style scoped lang="less">
     @import "../assets/css/common.less";
+    .icon {
+        width: 1em; height: 1em;
+        vertical-align: -0.15em;
+        fill: currentColor;
+        overflow: hidden;
+    }
+    .sort{
+        .of;
+        .bgWhite;
 
+        .sortNav{
+            .fl;
+            .borderBox;
+            width: 25%;
+            position: relative;
+            .tac;
+            height: 0.9rem;
+            line-height: 0.9rem;
+            .fs26;
+            .icon-sort-small{
+                font-size: 0.3rem;
+            }
+            .icon-paixu{
+                font-size: 0.18rem;
+                color:#6d6d6d;
+            }
+            .icon-pc-sort-up-copy-down{
+                font-size: 0.3rem;
+            }
+            .line{
+                .fr;
+                height: 0.5rem;
+                border-right: @border;
+                margin-top: 0.2rem;
+            }
+            .hline{
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translate(-50%);
+                width: 1.75rem;
+                border-top: 0.04rem solid @yellow;
+            }
+        }
+    }
     .pdwrap{
         padding: 0 0.3rem;
         .product{
@@ -90,7 +151,40 @@
     export default {
         data() {
             return {
+                navList:[
+                    {
+                        name:'综合',
+                        type:2,
+                        active:true
+                    },
+                    {
+                        name:'销量',
+                        type:0,
+                        active:false
+                    },
+                    {
+                        name:'价格',
+                        type:0,
+                        active:false
+                    },
+                    {
+                        name:'综合',
+                        type:0,
+                        active:false
+                    }
+                ],
                 dataList:[]
+            }
+        },
+        methods:{
+            selSort(item){
+                if(item.active){
+                    item.type+=1;
+                    if(item.type>=3) item.type=0;
+                }else{
+                    this.navList.forEach(arg=>arg.active=false)
+                    item.active=true
+                }
             }
         },
         mounted(){

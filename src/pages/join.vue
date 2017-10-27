@@ -117,7 +117,7 @@
                         need:false,
                         label:'推荐人',
                         val:'',
-                        ph:'请输入电话号码'
+                        ph:'请输入推荐人姓名'
                     },
                     {
                         need:false,

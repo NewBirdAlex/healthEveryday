@@ -7,7 +7,7 @@ import store from './store'
 
 //reset css inport
 import './assets/css/reset.css'
-import './assets/font/iconfont.css'
+// import './assets/font/iconfont.css'
 
 
 
@@ -80,6 +80,11 @@ Vue.prototype.$jsonToFormData = function(json) {
     }
     return str.substr(1)
 }
+
+//过滤器
+import filters from './lib/myfilter'
+
+Object.keys(filters).forEach(key => Vue.filter(key, filters[key]));
 
 new Vue({
     el: '#app',

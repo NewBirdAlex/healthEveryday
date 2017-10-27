@@ -13,15 +13,14 @@
                 <p class="fs24">ID：{{information.ID}}</p>
             </div>
         </div>
-
         <div class="bgWhite of tac lh35 pt pb">
             <div class="w50 fl br borderBox">
-                <p class="fs30">210.13</p>
+                <p class="fs30">{{information.wallet}}</p>
                 <p class="fs26 mt">我的钱包</p>
             </div>
             <div class="w50 fl">
 
-                <p class="fs30">342</p>
+                <p class="fs30">{{information.totalPoints}}</p>
                 <p class="fs26 mt">我的积分</p>
             </div>
         </div>

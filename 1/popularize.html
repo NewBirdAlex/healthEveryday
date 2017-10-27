@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>popularize</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        body ,html{
+
+            background: url("./src/tuiguang.jpg") #fcfcfc ;
+            background-size: 100% auto;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .head {
+            /*width: 2.4rem;*/
+            /*height: 2.4rem;*/
+            /*line-height: 2.4rem;*/
+            margin: 0rem auto 0 auto;
+            text-align: center;
+            padding: 0.2rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0;
+        }
+        .head img {
+            width: 1.36rem;
+            height: 1.36rem;
+            border-radius: 50%;
+        }
+        .exp{
+            /*color: white;*/
+            text-align: center;
+            font-size: 0.26rem;
+        }
+        .gray{
+            color: #cccccc;
+            font-size: 0.24rem;
+        }
+        .code{
+            position: absolute;
+            bottom:1rem;
+           right:0.5rem;
+            width: 1.85rem;
+            text-align: center;
+            background: white;
+            padding: 0.1rem;
+        }
+        .code p{
+            position: absolute;
+            top: 100%;
+            right:0;
+            width: 200%;
+            text-align: right;
+            /*transform: translateY(100%);*/
+            font-size: 0.2rem;
+        }
+        .code img{
+            width: 1.85rem;
+            /*float: left;*/
+            /*margin-top: 0.1rem;*/
+        }
+    </style>
+    <script src="src/adaptive.js"></script>
+</head>
+<body>
+<div class="head">
+    <img src="./src/head.jpg" alt="">
+</div>
+<div class="exp">
+
+    <p>我是口香糖，我为天美康联代言</p>
+    <!--<p class="gray">美丽健康联盟进行中...</p>-->
+</div>
+<div class="code" >
+    <div id="qrcode"></div>
+    <p>天美康联健康产业联盟</p>
+</div>
+<script type="text/javascript" src="./src/qrcode.min.js"></script>
+<script type="text/javascript">
+    // 简单方式
+new QRCode(document.getElementById('qrcode'), 'https://www.baidu.com/');
+
+// 设置参数方式
+// var qrcode = new QRCode('qrcode', {
+//   text: 'your content',
+//   width: 256,
+//   height: 256,
+//   colorDark : '#000000',
+//   colorLight : '#ffffff',
+//   correctLevel : QRCode.CorrectLevel.H
+// }
+// );
+
+// 使用 API
+// qrcode.clear();
+// qrcode.makeCode('https://www.baidu.com/');
+</script>
+</body>
+
+</html>
